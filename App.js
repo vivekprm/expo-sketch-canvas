@@ -1,11 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
+import { ColorItem } from "./components/ColorItem";
+import { colorOptions } from "./Constants";
+import { useState } from "react";
 
 export default function App() {
+  const [strokeColor, setStrokeColor] = useState("#000000");
+  console.log("Stroke color is: " + strokeColor);
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {colorOptions.map((item, idx) => {
+        return <ColorItem key={idx} item={item} onClick={setStrokeColor} />;
+      })}
     </View>
   );
 }
@@ -13,8 +18,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "flex-end",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginBottom: 50,
   },
 });
